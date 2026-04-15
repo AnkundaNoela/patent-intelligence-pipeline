@@ -1,0 +1,21 @@
+# Environment
+.env
+
+# Raw data files (too large for GitHub)
+data/raw/
+data/clean/
+*.zip
+*.tsv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Database files
+*.db
+*.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
