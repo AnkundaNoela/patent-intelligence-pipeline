@@ -1,0 +1,316 @@
+{
+  "title": "Global Patent Intelligence Report",
+  "period": "2000-2025",
+  "total_patents": 7194096,
+  "total_inventors": 3433752,
+  "total_companies": 389214,
+  "top_inventors": [
+    {
+      "rank": 1,
+      "name": "Shunpei Yamazaki",
+      "country": "JP",
+      "patents": 6178
+    },
+    {
+      "rank": 2,
+      "name": "Kia Silverbrook",
+      "country": "AU",
+      "patents": 4720
+    },
+    {
+      "rank": 3,
+      "name": "Tao Luo",
+      "country": "US",
+      "patents": 4490
+    },
+    {
+      "rank": 4,
+      "name": "Jonathan P. Ive",
+      "country": "US",
+      "patents": 2932
+    },
+    {
+      "rank": 5,
+      "name": "Junyi Li",
+      "country": "US",
+      "patents": 2881
+    },
+    {
+      "rank": 6,
+      "name": "Kangguo Cheng",
+      "country": "US",
+      "patents": 2835
+    },
+    {
+      "rank": 7,
+      "name": "Frederick E. Shelton, IV",
+      "country": "US",
+      "patents": 2723
+    },
+    {
+      "rank": 8,
+      "name": "Peter Gaal",
+      "country": "US",
+      "patents": 2552
+    },
+    {
+      "rank": 9,
+      "name": "Duncan Robert Kerr",
+      "country": "US",
+      "patents": 2534
+    },
+    {
+      "rank": 10,
+      "name": "Bartley K. Andre",
+      "country": "US",
+      "patents": 2473
+    }
+  ],
+  "top_companies": [
+    {
+      "rank": 1,
+      "name": "SAMSUNG DISPLAY CO., LTD.",
+      "country": "KR",
+      "patents": 168757
+    },
+    {
+      "rank": 2,
+      "name": "International Business Machines Corporation",
+      "country": "US",
+      "patents": 141690
+    },
+    {
+      "rank": 3,
+      "name": "CANON KABUSHIKI KAISHA",
+      "country": "JP",
+      "patents": 72034
+    },
+    {
+      "rank": 4,
+      "name": "SONY GROUP CORPORATION",
+      "country": "JP",
+      "patents": 51620
+    },
+    {
+      "rank": 5,
+      "name": "Intel Corporation",
+      "country": "US",
+      "patents": 49867
+    },
+    {
+      "rank": 6,
+      "name": "LG ELECTRONICS INC.",
+      "country": "KR",
+      "patents": 49384
+    },
+    {
+      "rank": 7,
+      "name": "QUALCOMM Incorporated",
+      "country": "US",
+      "patents": 41358
+    },
+    {
+      "rank": 8,
+      "name": "Taiwan Semiconductor Manufacturing Company, Ltd.",
+      "country": "TW",
+      "patents": 40111
+    },
+    {
+      "rank": 9,
+      "name": "Kabushiki Kaisha Toshiba",
+      "country": "JP",
+      "patents": 40107
+    },
+    {
+      "rank": 10,
+      "name": "Apple Inc.",
+      "country": "US",
+      "patents": 39059
+    }
+  ],
+  "top_countries": [
+    {
+      "country": "US",
+      "patents": 3810610,
+      "share_pct": 52.97
+    },
+    {
+      "country": "JP",
+      "patents": 1196309,
+      "share_pct": 16.63
+    },
+    {
+      "country": "CN",
+      "patents": 495932,
+      "share_pct": 6.89
+    },
+    {
+      "country": "DE",
+      "patents": 454631,
+      "share_pct": 6.32
+    },
+    {
+      "country": "KR",
+      "patents": 423532,
+      "share_pct": 5.89
+    },
+    {
+      "country": "TW",
+      "patents": 300331,
+      "share_pct": 4.17
+    },
+    {
+      "country": "GB",
+      "patents": 222555,
+      "share_pct": 3.09
+    },
+    {
+      "country": "CA",
+      "patents": 212560,
+      "share_pct": 2.95
+    },
+    {
+      "country": "FR",
+      "patents": 180788,
+      "share_pct": 2.51
+    },
+    {
+      "country": "IN",
+      "patents": 117765,
+      "share_pct": 1.64
+    }
+  ],
+  "technology_sectors": [
+    {
+      "sector": "Electrical engineering",
+      "patents": 2927594,
+      "rank": 1
+    },
+    {
+      "sector": "Instruments",
+      "patents": 1316264,
+      "rank": 2
+    },
+    {
+      "sector": "Chemistry",
+      "patents": 967274,
+      "rank": 3
+    },
+    {
+      "sector": "Mechanical engineering",
+      "patents": 957613,
+      "rank": 4
+    },
+    {
+      "sector": "Other fields",
+      "patents": 276986,
+      "rank": 5
+    }
+  ],
+  "yearly_trends": [
+    {
+      "year": 2000,
+      "patents": 176192
+    },
+    {
+      "year": 2001,
+      "patents": 184172
+    },
+    {
+      "year": 2002,
+      "patents": 184494
+    },
+    {
+      "year": 2003,
+      "patents": 187104
+    },
+    {
+      "year": 2004,
+      "patents": 181413
+    },
+    {
+      "year": 2005,
+      "patents": 157829
+    },
+    {
+      "year": 2006,
+      "patents": 196489
+    },
+    {
+      "year": 2007,
+      "patents": 182978
+    },
+    {
+      "year": 2008,
+      "patents": 185260
+    },
+    {
+      "year": 2009,
+      "patents": 192052
+    },
+    {
+      "year": 2010,
+      "patents": 244599
+    },
+    {
+      "year": 2011,
+      "patents": 248101
+    },
+    {
+      "year": 2012,
+      "patents": 277285
+    },
+    {
+      "year": 2013,
+      "patents": 303658
+    },
+    {
+      "year": 2014,
+      "patents": 327014
+    },
+    {
+      "year": 2015,
+      "patents": 326969
+    },
+    {
+      "year": 2016,
+      "patents": 334674
+    },
+    {
+      "year": 2017,
+      "patents": 352587
+    },
+    {
+      "year": 2018,
+      "patents": 341104
+    },
+    {
+      "year": 2019,
+      "patents": 392618
+    },
+    {
+      "year": 2020,
+      "patents": 390572
+    },
+    {
+      "year": 2021,
+      "patents": 363829
+    },
+    {
+      "year": 2022,
+      "patents": 360417
+    },
+    {
+      "year": 2023,
+      "patents": 350093
+    },
+    {
+      "year": 2024,
+      "patents": 373852
+    },
+    {
+      "year": 2025,
+      "patents": 378741
+    }
+  ]
+}
