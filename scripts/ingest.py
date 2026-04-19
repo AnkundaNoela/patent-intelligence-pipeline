@@ -201,36 +201,60 @@ def clean_companies(patent_ids, locations):
 # ============================================
 def clean_classifications(patent_ids):
     print("\n[5/6] Cleaning CPC classifications...")
-    cpc = read_zip_chunked(
-        "g_cpc_current.tsv.zip",
-        usecols=[
-            "patent_id", "cpc_section", "cpc_class",
-            "cpc_subclass", "cpc_group", "cpc_type"
-        ],
-        filter_ids=patent_ids,
-        filter_col="patent_id"
-    )
-    cpc = cpc[cpc["cpc_type"] == "inventional"]
-    cpc.drop_duplicates(subset=["patent_id", "cpc_group"], inplace=True)
-    print(f"  Kept {len(cpc):,} CPC records after filtering")
+    
+    # force all patent_ids to string for consistent matching
+    patent_id_set = set(str(pid) for pid in patent_ids)
+    print(f"  Matching against {len(patent_id_set):,} patent IDs")
+    
+    path = os.path.join(RAW, "g_cpc_current.tsv.zip")
+    chunks = []
+    with zipfile.ZipFile(path) as z:
+        tsv_name = z.namelist()[0]
+        with z.open(tsv_name) as f:
+            for chunk in pd.read_csv(
+                f, sep="\t",
+                usecols=["patent_id", "cpc_section", "cpc_class",
+                         "cpc_subclass", "cpc_group", "cpc_type"],
+                dtype={"patent_id": str},
+                low_memory=False, on_bad_lines="skip",
+                chunksize=1000000
+            ):
+                chunk["patent_id"] = chunk["patent_id"].astype(str).str.strip()
+                chunk = chunk[chunk["patent_id"].isin(patent_id_set)]
+                chunk = chunk[chunk["cpc_type"] == "inventional"]
+                chunks.append(chunk)
+                print(f"    CPC chunks processed: {len(chunks)}, records so far: {sum(len(c) for c in chunks):,}", end="\r")
+
+    cpc = pd.concat(chunks, ignore_index=True)
+    cpc.drop_duplicates(subset=["patent_id"], keep="first", inplace=True)
+    print(f"\n  Kept {len(cpc):,} CPC records after filtering")
 
     print("\n[6/6] Cleaning WIPO technology...")
-    wipo = read_zip_chunked(
-        "g_wipo_technology.tsv.zip",
-        usecols=[
-            "patent_id", "wipo_field_id",
-            "wipo_sector_title", "wipo_field_title"
-        ],
-        filter_ids=patent_ids,
-        filter_col="patent_id"
-    )
+    wipo_chunks = []
+    path = os.path.join(RAW, "g_wipo_technology.tsv.zip")
+    with zipfile.ZipFile(path) as z:
+        tsv_name = z.namelist()[0]
+        with z.open(tsv_name) as f:
+            for chunk in pd.read_csv(
+                f, sep="\t",
+                usecols=["patent_id", "wipo_field_id",
+                         "wipo_sector_title", "wipo_field_title"],
+                dtype={"patent_id": str},
+                low_memory=False, on_bad_lines="skip",
+                chunksize=1000000
+            ):
+                chunk["patent_id"] = chunk["patent_id"].astype(str).str.strip()
+                chunk = chunk[chunk["patent_id"].isin(patent_id_set)]
+                wipo_chunks.append(chunk)
+
+    wipo = pd.concat(wipo_chunks, ignore_index=True)
     wipo.rename(columns={
         "wipo_sector_title": "wipo_sector",
         "wipo_field_title": "wipo_field"
     }, inplace=True)
     wipo.drop_duplicates(subset="patent_id", inplace=True)
+    print(f"  Kept {len(wipo):,} WIPO records")
 
-    # merge cpc and wipo
     df = cpc.merge(wipo, on="patent_id", how="left")
     df.to_csv(f"{CLEAN}/clean_classifications.csv", index=False)
     print(f"  Saved {len(df):,} classification records")
@@ -251,5 +275,4 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 50)
     print("  INGESTION COMPLETE!")
-    print(f"  Clean files saved to: data/clean/")
     print("=" * 50)
