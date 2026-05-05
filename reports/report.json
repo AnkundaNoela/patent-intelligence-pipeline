@@ -4,6 +4,11 @@
   "total_patents": 7194096,
   "total_inventors": 3433752,
   "total_companies": 389214,
+  "analytics_types": [
+    "descriptive",
+    "diagnostic",
+    "predictive"
+  ],
   "top_inventors": [
     {
       "rank": 1,
@@ -312,5 +317,43 @@
       "year": 2025,
       "patents": 378741
     }
-  ]
+  ],
+  "ml_forecast": {
+    "linear_r2": 0.8877,
+    "polynomial_r2": 0.962,
+    "predictions": [
+      {
+        "year": 2026,
+        "linear": 416345,
+        "polynomial": 337027
+      },
+      {
+        "year": 2027,
+        "linear": 426690,
+        "polynomial": 313181
+      },
+      {
+        "year": 2028,
+        "linear": 437034,
+        "polynomial": 283343
+      },
+      {
+        "year": 2029,
+        "linear": 447378,
+        "polynomial": 247105
+      },
+      {
+        "year": 2030,
+        "linear": 457723,
+        "polynomial": 204059
+      }
+    ]
+  },
+  "diagnostic_insights": {
+    "trend_explanation": "Sharp rise post-2010 driven by smartphone revolution and AI boom",
+    "top_company_reason": "Samsung's dominance reflects South Korea's national R&D investment strategy",
+    "country_dominance": "USA leads due to Silicon Valley ecosystem and strong IP laws",
+    "china_rise": "China grew from near-zero to 6.89% via Made in China 2025 strategy",
+    "ai_inflection": "AI patents exploded after 2012 AlexNet breakthrough"
+  }
 }
