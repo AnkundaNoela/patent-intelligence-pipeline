@@ -24,7 +24,18 @@ patent-intelligence-pipeline/
 └── README.md
 ---
 
-## 📦Data Source
+##  Engineering Considerations
+
+### Large-Scale Data Handling
+
+Due to the size of the dataset (tens of millions of rows across tables), data processing was optimized using:
+
+- **Chunked loading** in Python (pandas) to avoid memory overflow
+- Incremental inserts into MySQL instead of single bulk loads
+- Efficient indexing during database loading
+
+This approach prevented system crashes and ensured stable execution on a local machine with limited resources.
+## Data Source
 
 **USPTO PatentsView Granted Patent Disambiguated Data**
 - URL: https://data.uspto.gov/bulkdata/datasets/pvgpatdis
@@ -129,6 +140,26 @@ streamlit run dashboard/app.py
 - Patents grew from **176,192** in 2000 to **378,741** in 2025
 
 ---
+##  Deployment Notes
+
+### Local Deployment
+The Streamlit dashboard is currently deployed and tested on **localhost**, ensuring:
+- Fast query execution
+- Full control over the database
+- No cloud-related latency or cost constraints
+
+### Cloud Deployment Considerations
+
+Deploying this pipeline to free-tier cloud databases (e.g., PlanetScale, Firebase, etc.) presents challenges:
+
+- The dataset exceeds **tens of millions of rows**
+- Free tiers typically impose:
+  - Storage limits
+  - Query performance restrictions
+  - Connection limits
+
+As a result, uploading and querying this dataset in such environments would be **slow and impractical**.
+
 
 ## Tech Stack
 
@@ -138,7 +169,12 @@ streamlit run dashboard/app.py
 - **GitHub** — version control
 
 ---
+##   Key considerations
+#  Data Validation
 
+- Verified dataset integrity against USPTO totals
+- Confirmed full dataset size (~9.4M patents)
+- Ensured consistency after filtering (2000–2025 subset)
 ##  Author
 
 Ankunda Noela 23/U/06264/PS
