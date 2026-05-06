@@ -320,32 +320,32 @@
   ],
   "ml_forecast": {
     "linear_r2": 0.8877,
-    "polynomial_r2": 0.962,
+    "polynomial_r2": 0.8883,
     "predictions": [
       {
         "year": 2026,
         "linear": 416345,
-        "polynomial": 337027
+        "polynomial": 411597
       },
       {
         "year": 2027,
         "linear": 426690,
-        "polynomial": 313181
+        "polynomial": 420886
       },
       {
         "year": 2028,
         "linear": 437034,
-        "polynomial": 283343
+        "polynomial": 430100
       },
       {
         "year": 2029,
         "linear": 447378,
-        "polynomial": 247105
+        "polynomial": 439239
       },
       {
         "year": 2030,
         "linear": 457723,
-        "polynomial": 204059
+        "polynomial": 448302
       }
     ]
   },

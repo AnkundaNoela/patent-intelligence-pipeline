@@ -104,7 +104,7 @@ def console_report():
     X = trends["year"].values.reshape(-1,1)
     y = trends["patent_count"].values
     lr = LinearRegression(); lr.fit(X,y)
-    poly = make_pipeline(PolynomialFeatures(3), LinearRegression()); poly.fit(X,y)
+    poly = make_pipeline(PolynomialFeatures(2), LinearRegression()); poly.fit(X,y)
     print("\n--- ML FORECAST (2026-2030) ---")
     for yr in range(2026, 2031):
         lp = int(lr.predict([[yr]])[0])
@@ -137,7 +137,7 @@ def export_json():
     X = trends["year"].values.reshape(-1,1)
     y = trends["patent_count"].values
     lr = LinearRegression(); lr.fit(X,y)
-    poly = make_pipeline(PolynomialFeatures(3), LinearRegression()); poly.fit(X,y)
+    poly = make_pipeline(PolynomialFeatures(2), LinearRegression()); poly.fit(X,y)
 
     report = {
         "title": "Global Patent Intelligence Report",
@@ -352,7 +352,7 @@ def export_visualizations():
     X = trends["year"].values.reshape(-1,1)
     y = trends["patent_count"].values
     lr   = LinearRegression(); lr.fit(X,y)
-    poly = make_pipeline(PolynomialFeatures(3), LinearRegression()); poly.fit(X,y)
+    poly = make_pipeline(PolynomialFeatures(2), LinearRegression()); poly.fit(X,y)
     future = np.array(range(2026,2031)).reshape(-1,1)
     lr_pred   = lr.predict(future)
     poly_pred = poly.predict(future)
