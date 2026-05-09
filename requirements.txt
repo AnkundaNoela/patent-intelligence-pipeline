@@ -5,3 +5,6 @@ streamlit
 matplotlib
 seaborn
 python-dotenv
+scikit-learn
+statsmodels
+numpy
