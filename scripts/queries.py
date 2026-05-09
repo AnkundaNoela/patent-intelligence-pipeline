@@ -4,21 +4,25 @@ import sqlalchemy
 from dotenv import load_dotenv
 load_dotenv()
 
-# ============================================
-# SMART ENGINE — uses CSVs on cloud, MySQL locally
-# ============================================
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPORTS = os.path.join(BASE, "reports")
 
+# Always use CSV on Streamlit Cloud, MySQL locally
 DB_HOST = os.getenv("DB_HOST", "localhost")
-USE_CSV = DB_HOST == "localhost" or not os.getenv("DB_HOST")
+USE_CSV = (DB_HOST == "localhost") or (not os.getenv("DB_HOST"))
 
+engine = None
 if not USE_CSV:
-    engine = sqlalchemy.create_engine(
-        f"mysql+pymysql://{os.getenv('DB_USER','root')}:{os.getenv('DB_PASSWORD','')}@{DB_HOST}:{os.getenv('DB_PORT','3306')}/{os.getenv('DB_NAME','patent_db')}?charset=utf8mb4"
-    )
+    try:
+        engine = sqlalchemy.create_engine(
+            f"mysql+pymysql://{os.getenv('DB_USER','root')}:{os.getenv('DB_PASSWORD','')}@{DB_HOST}:{os.getenv('DB_PORT','3306')}/{os.getenv('DB_NAME','patent_db')}?charset=utf8mb4"
+        )
+    except Exception:
+        engine = None
 
 def run_query(sql):
+    if engine is None:
+        raise RuntimeError("No database connection available")
     with engine.connect() as conn:
         return pd.read_sql(sqlalchemy.text(sql), conn)
 
