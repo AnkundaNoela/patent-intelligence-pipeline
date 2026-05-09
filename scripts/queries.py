@@ -7,9 +7,9 @@ load_dotenv()
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPORTS = os.path.join(BASE, "reports")
 
-# Always use CSV on Streamlit Cloud, MySQL locally
-DB_HOST = os.getenv("DB_HOST", "localhost")
-USE_CSV = (DB_HOST == "localhost") or (not os.getenv("DB_HOST"))
+# Force CSV mode — only use MySQL if explicitly configured
+DB_HOST = os.getenv("DB_HOST", "")
+USE_CSV = DB_HOST == "" or DB_HOST == "localhost"
 
 engine = None
 if not USE_CSV:
@@ -18,11 +18,11 @@ if not USE_CSV:
             f"mysql+pymysql://{os.getenv('DB_USER','root')}:{os.getenv('DB_PASSWORD','')}@{DB_HOST}:{os.getenv('DB_PORT','3306')}/{os.getenv('DB_NAME','patent_db')}?charset=utf8mb4"
         )
     except Exception:
-        engine = None
+        USE_CSV = True
 
 def run_query(sql):
-    if engine is None:
-        raise RuntimeError("No database connection available")
+    if USE_CSV or engine is None:
+        raise RuntimeError("Database not available — use CSV mode")
     with engine.connect() as conn:
         return pd.read_sql(sqlalchemy.text(sql), conn)
 
